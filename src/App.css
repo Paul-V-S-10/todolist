@@ -5,10 +5,11 @@
 
 .app {
     background-color: bisque;
-    padding: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     height: 100vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 
     .tasks {
         width: 30%;
