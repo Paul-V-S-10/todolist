@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { InputBox } from './ReUsable.jsx/InputBox';
 import './App.css'
 
-
 const App = () => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const date = new Date()
@@ -14,11 +13,12 @@ const App = () => {
         setTasks((previous) => ([...previous, { id: Date.now(), value: task, status: false }]))
         setTask('')
     }
-
-    // const checkBoxHandle = () =>{
-    //     }
-    // }    
-
+    const handleKeyPress = (e) => {
+        console.log(e);
+        if (e.key === 'Enter') {
+            handleButtonClick();
+        }};
+        
     return (
         <div className='app'>
             <div className="tasks">
@@ -28,7 +28,7 @@ const App = () => {
                 placeholder='📝 Add Item...'
                 onChange={setTask}
                 /> */}
-                    <input className='asignTaskInput' type="text" placeholder='📝 Add Item...' value={task} onChange={(e) => setTask(e.target.value)} />
+                    <input onKeyDown={handleKeyPress} className='asignTaskInput' type="text" placeholder='📝 Add Item...' value={task} onChange={(e) => setTask(e.target.value)} />
                     <button className='asignTaskButton' onClick={handleButtonClick}>➕</button>
                 </div>
                 <div className="displayTasks">
@@ -38,7 +38,6 @@ const App = () => {
                                 setTasks(tasks.filter(obj2 => {
                                     if (obj2.id == obj.id) {
                                         obj2.status = e.target.checked
-                                        { console.log(obj2); }
                                     }
                                     return obj2
                                 }))
@@ -46,8 +45,7 @@ const App = () => {
                             <p>{obj.value}</p>
                             <button className='crossButton'>❌</button>
                         </div>
-                    )
-                    )}
+                    ))}
                 </div>
             </div>
             <div className="completedTasks">
@@ -59,9 +57,7 @@ const App = () => {
                                 <div className="displayCompletedTask">
                                     <p>{obj.value} </p>
                                 </div>
-                            )
-                        }
-                    })}
+                            )}})}
                 </div>
             </div>
         </div>
